@@ -69,10 +69,13 @@ export const Account = () => {
                   onClick={async () => {
                     setLoading(true);
                     try {
-                      await Axios.post("http://localhost:3001/login", {
-                        username: username,
-                        password: password,
-                      }).then((response) => {
+                      await Axios.post(
+                        "https://tammy1133-api.onrender.com/login",
+                        {
+                          username: username,
+                          password: password,
+                        }
+                      ).then((response) => {
                         setLoading(false);
                         console.log(response);
                         if (response.data?.message === "Error") {
@@ -150,7 +153,7 @@ export const Account = () => {
                       setLoading(true);
                       try {
                         Axios.post(
-                          "http://localhost:3001/registeruser",
+                          "https://tammy1133-api.onrender.com/registeruser",
                           user
                         ).then((response) => {
                           setLoading(false);

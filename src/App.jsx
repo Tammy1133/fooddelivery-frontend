@@ -17,7 +17,7 @@ import { setFood } from "./redux/actions/foodActions";
 
 function App() {
   const getFood = async () => {
-    await Axios.get("http://localhost:3001/getfood")
+    await Axios.get("https://tammy1133-api.onrender.com/getfood")
 
       .then((res) => {
         return dispatch(setFood(res.data));
@@ -27,7 +27,7 @@ function App() {
       });
   };
   const getOrders = async () => {
-    await Axios.get("http://localhost:3001/getorders")
+    await Axios.get("https://tammy1133-api.onrender.com/getorders")
 
       .then((res) => {
         return dispatch(setOrders(res.data));

@@ -19,7 +19,7 @@ export const Orders = () => {
   });
 
   const getOrders = async () => {
-    await Axios.get("http://localhost:3001/getorders")
+    await Axios.get("https://tammy1133-api.onrender.com/getorders")
 
       .then((res) => {
         return dispatch(setOrders(res.data));

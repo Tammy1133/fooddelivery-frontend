@@ -56,7 +56,7 @@ export const Admin = () => {
   const dispatch = useDispatch();
 
   const handleDelete = async (id) => {
-    await Axios.delete(`http://localhost:3001/deletefood/${id}`)
+    await Axios.delete(`https://tammy1133-api.onrender.com/deletefood/${id}`)
       .then((res) => {
         dispatch(deleteFood(id));
       })
@@ -90,7 +90,7 @@ export const Admin = () => {
               e.preventDefault();
               console.log(category);
               try {
-                await Axios.post("http://localhost:3001/addfood", {
+                await Axios.post("https://tammy1133-api.onrender.com/addfood", {
                   name: name,
                   price: price,
                   foodclass: category.value,
@@ -222,7 +222,7 @@ export const Admin = () => {
                             if (item.status === "Not Delivered") {
                               try {
                                 await Axios.put(
-                                  `http://localhost:3001/updatestatus/${item._id}`,
+                                  `https://tammy1133-api.onrender.com/updatestatus/${item._id}`,
                                   { status: "Delivered" }
                                 ).then((res) => {
                                   return dispatch(
@@ -235,7 +235,7 @@ export const Admin = () => {
                             } else {
                               try {
                                 await Axios.put(
-                                  `http://localhost:3001/updatestatus/${item._id}`,
+                                  `https://tammy1133-api.onrender.com/updatestatus/${item._id}`,
                                   { status: "Not Delivered" }
                                 ).then((res) => {
                                   return dispatch(
