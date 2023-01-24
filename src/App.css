@@ -1,0 +1,20 @@
+/* /* .App {
+  text-align: center;
+} */
+
+.mynavlink {
+  font-size: 16px;
+  margin-right: 20px;
+  text-transform: uppercase;
+  font-weight: 500;
+  cursor: pointer;
+}
+.mynavlink2 {
+  font-size: 16px;
+  text-transform: uppercase;
+  font-weight: 500;
+  font-size: 16px;
+  margin-top: 20px;
+  cursor: pointer;
+  color: black;
+}
