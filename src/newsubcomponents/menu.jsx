@@ -37,7 +37,7 @@ export const Menu = () => {
     <div>
       <h4 className="text-center text-6xl p-5">Our Menu</h4>
 
-      <div className="mt-3  flex flex-wrap justify-center">
+      <div className="mt-3  flex flex-wrap gap-y-5 ml-[40px] sm:ml-[0px]   sm:justify-center">
         {buttonData.map((item) => {
           return (
             <div
@@ -58,7 +58,7 @@ export const Menu = () => {
         })}
       </div>
 
-      <div className="grid md:grid-cols-2 justify-center md:justify-start ml-3  lg:grid-cols-3 mt-3 gap-4 px-2 md:px-5 pt-4  ">
+      <div className="grid md:grid-cols-2 justify-center md:justify-start  lg:grid-cols-3 mt-3 gap-4 px-2 md:px-5 pt-4  ">
         {displayedData.map((item) => {
           return <EachMenu food={item}></EachMenu>;
         })}

@@ -18,3 +18,9 @@
   cursor: pointer;
   color: black;
 }
+.paystack-button {
+  background-color: red;
+  border-radius: 20px;
+  padding: 10px;
+  color: white;
+}

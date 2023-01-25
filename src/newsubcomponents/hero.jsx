@@ -20,7 +20,7 @@ export const Hero = () => {
             <h3 className="text-center text-white pt-4 md:text-6xl  text-5xl font-semibold">
               Welcome to Foodies
             </h3>
-            <p className="pt-4  px-4   text-lg md:text-2xl text-slate-100 w-[65%] lg:w-[70%] lg:mx-auto">
+            <p className="pt-4  px-4   text-lg md:text-2xl text-slate-100 w-[93%] lg:w-[90%] lg:mx-auto">
               We offer different services, such as food delivery, party
               contracting, and other services. We deliver right on time and we
               never disappoint out customers.
@@ -32,9 +32,9 @@ export const Hero = () => {
         </div>
       </div>
 
-      <div className="bg-black py-16 flex lg:flex-row  flex-col justify-between md:px-[150px] ">
+      <div className="bg-black py-16 flex lg:flex-row  flex-col justify-between px-[20px] md:px-[150px] ">
         <div className="flex flex-col items-center">
-          <h5 className="text-white text-xl ml-[-60px] ">
+          <h5 className="text-white text-xl sm:ml-[-60px]  ml-[-20px] ">
             Get up to 20% Discount today
           </h5>
           <div>
@@ -43,13 +43,13 @@ export const Hero = () => {
               className="p-3 rounded-2xl mt-3"
               placeholder="Email"
             />
-            <button className=" p-3 ml-4 bg-slate-900 rounded-lg text-white">
+            <button className=" mt-3 ml-1 sm:mt-0 p-3 sm:ml-4  bg-slate-900 rounded-lg text-white">
               Sign Up
             </button>
           </div>
         </div>
         <div className="flex flex-col items-center mt-14 lg:mt-0">
-          <h5 className="text-white text-xl ml-[-20px] ">
+          <h5 className="text-white text-xl sm:ml-[-20px]  ">
             Become our loyal customer today
           </h5>
           <div>
@@ -58,7 +58,7 @@ export const Hero = () => {
               className="p-3 rounded-2xl mt-3"
               placeholder="Phone number"
             />
-            <button className=" p-3 ml-4 bg-slate-900 rounded-lg text-white">
+            <button className=" mt-3  sm:mt-0 p-3 sm:ml-4 bg-slate-900 rounded-lg text-white">
               Sign Up
             </button>
           </div>

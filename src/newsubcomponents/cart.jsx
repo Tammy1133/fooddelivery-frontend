@@ -84,7 +84,7 @@ export const Cart = () => {
   };
   const componentProps = {
     ...config,
-    text: "Paynow",
+    text: "Pay Now",
     onSuccess: (reference) => handlePaystackSuccessAction(reference),
     onClose: handlePaystackCloseAction,
   };
@@ -149,7 +149,7 @@ export const Cart = () => {
 
         <div className=" flex flex-col justify-center items-end mt-7 md:mt-0">
           <button
-            className="p-2 rounded-lg text-white bg-slate-800"
+            className="p-2 rounded-lg text-white bg-slate-800 mb-3"
             onClick={() => {
               dispatch(clearCart());
             }}
@@ -159,7 +159,16 @@ export const Cart = () => {
           <h2 className="text-2xl">Sub-total</h2>
           <h4 className="mt-2 text-5xl">{total} Naira</h4>
           <div className="mt-4">
-            <PaystackButton className="paystack-button" {...componentProps} />
+            {user.username !== undefined ? (
+              <PaystackButton className="paystack-button" {...componentProps} />
+            ) : (
+              <button
+                className="bg-red-800 p-2 rounded-lg text-white"
+                onClick={() => navigate("/account")}
+              >
+                Login to pay
+              </button>
+            )}
           </div>
         </div>
       </div>
