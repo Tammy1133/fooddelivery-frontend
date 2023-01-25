@@ -10,28 +10,26 @@ import { EachMenu } from "./eachmenu";
 
 export const Menu = () => {
   const buttonData = ["ALL", "Swallow", "Light", "Semi heavy", "Meat"];
-  const [category, setCategory] = useState("ALL");
+
   const allFood = useSelector((state) => {
     return state.allFoodReducer.food;
   });
   console.log(allFood);
-  const [displayedData, setDisplayedData] = useState(allFood);
+
+  const [displayedData, setDisplayedData] = useState([]);
   const navigate = useNavigate();
 
   const getCategory = (itemName) => {
-    if (itemName === "ALL") {
-      setDisplayedData(allFood);
-    } else {
-      setDisplayedData(
-        allFood.filter((item) => {
-          return item.foodclass.toUpperCase() === itemName.toUpperCase();
-        })
-      );
-    }
+    setDisplayedData(
+      allFood.filter((item) => {
+        return item.foodclass.toUpperCase() === itemName.toUpperCase();
+      })
+    );
   };
+
   useEffect(() => {
-    getCategory("ALL");
-  }, []);
+    setDisplayedData(allFood);
+  }, [allFood]);
 
   return (
     <div>
@@ -50,8 +48,7 @@ export const Menu = () => {
                 className="mr-6  text-lg px-3 py-2
                text-white uppercase rounded-lg bg-slate-800"
               >
-                {" "}
-                {item}{" "}
+                {item}
               </button>
             </div>
           );
