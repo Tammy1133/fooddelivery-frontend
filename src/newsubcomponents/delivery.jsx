@@ -42,17 +42,17 @@ export const Delivery = () => {
         </h4>
         <div className="flex mt-[1.24rem]">
           <h1 className="text-xl">OFFICE ADDRESS:</h1>
-          <p className="mt-[2px] ml-5 text-lg uppercase">
+          <p className="mt-[1x] ml-5 text-lg uppercase">
             Plot 3, Block 4, Off Awolowo Road, Ijesha, Ikorodu, Lagos, Nigeria.{" "}
           </p>
         </div>
         <div className="flex  mt-1">
           <h1 className="text-xl">PHONE-NUMBER 1</h1>
-          <p className="mt-[4px] ml-5">08112037963</p>
+          <p className="mt-[1px] ml-5">08112037963</p>
         </div>
         <div className="flex  mt-1">
           <h1 className="text-xl">PHONE-NUMBER 2</h1>
-          <p className="mt-[4px] ml-5">0906435353</p>
+          <p className="mt-[1px] ml-5">0906435353</p>
         </div>
       </div>
     </div>
