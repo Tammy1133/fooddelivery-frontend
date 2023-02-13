@@ -43,7 +43,7 @@ export const Account = () => {
       ) : (
         <div className="relative  overflow-y-hidden">
           <div>
-            <div className=" bg-white  z-10 flex w-100 shadow-2xl justify-between py-4 px-[30px] md:px-[100px] items-center">
+            <div className=" bg-white  z-10 flex w-100 shadow-2xl justify-between py-4 px-[30px] md:px-[100px] items-center h-[10vh]">
               <h1
                 className="text-xl pt-2 md:pt-0 md:text-4xl uppercase cursor-pointer"
                 onClick={() => {
@@ -131,7 +131,7 @@ export const Account = () => {
             />
           </div>
           {showLogin && (
-            <div className="relative flex justify-center items-center mt-24 pb-16 min-h-screen ">
+            <div className="relative flex justify-center items-center mt-24 pb-16 min-h-[85vh] ">
               <div className="bg-white p-4 flex flex-col rounded-xl shadow-2xl">
                 <div className=" text-center mt-3">
                   <h3>Login</h3>
@@ -160,13 +160,10 @@ export const Account = () => {
                     onClick={async () => {
                       setLoading(true);
                       try {
-                        await Axios.post(
-                          "https://tammy1133-api.onrender.com/login",
-                          {
-                            username: username.toLowerCase(),
-                            password: password.toLowerCase(),
-                          }
-                        ).then((response) => {
+                        await Axios.post("http://localhost:3001/login", {
+                          username: username.toLowerCase(),
+                          password: password.toLowerCase(),
+                        }).then((response) => {
                           setLoading(false);
                           console.log(response);
                           if (response.status === 200) {
@@ -174,7 +171,9 @@ export const Account = () => {
                           }
                         });
                       } catch (error) {
-                        console.log(error);
+                        // alert(error.response.data);
+                        alert(error.response.data);
+
                         setLoading(false);
                       }
                     }}
@@ -200,7 +199,7 @@ export const Account = () => {
           )}
 
           {!showLogin && (
-            <div className="relative flex justify-center items-center mt-24 mb-32 min-h-screen ">
+            <div className="relative flex justify-center items-center mt-24 mb-32 min-h-[80vh] ">
               <div className="bg-white p-4 flex flex-col rounded-xl shadow-2xl">
                 <div className=" text-center mt-3">
                   <h3>Register</h3>
@@ -235,7 +234,7 @@ export const Account = () => {
                 />
                 <button
                   className="button-3 mt-4"
-                  onClick={() => {
+                  onClick={async () => {
                     if (password === confirmpassword) {
                       if (password.split("").length > 7) {
                         const user = {
@@ -245,15 +244,17 @@ export const Account = () => {
                         setLoading(true);
 
                         try {
-                          Axios.post(
-                            "https://tammy1133-api.onrender.com/registeruser",
+                          await Axios.post(
+                            "http://localhost:3001/registeruser",
                             user
                           ).then((response) => {
+                            console.log(response);
                             setLoading(false);
                             setShowLogin(true);
                           });
                         } catch (error) {
-                          console.log(error);
+                          alert(error.response.data);
+                          setLoading(false);
                         }
                       } else {
                         alert("Password is to be longer than 7 characters");
