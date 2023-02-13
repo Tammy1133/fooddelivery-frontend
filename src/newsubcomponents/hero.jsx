@@ -25,9 +25,11 @@ export const Hero = () => {
               contracting, and other services. We deliver right on time and we
               never disappoint out customers.
             </p>
-            <button className="p-3 hover:bg-slate-900 bg-slate-800 rounded-lg text-white mt-4">
-              Visit our menu now
-            </button>
+            <a href="#menu">
+              <button className="p-3 hover:bg-slate-900 bg-slate-800 rounded-lg text-white mt-4">
+                Visit our menu now
+              </button>
+            </a>
           </div>
         </div>
       </div>

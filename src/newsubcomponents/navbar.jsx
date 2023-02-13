@@ -12,9 +12,9 @@ export const Navbar = () => {
   });
 
   const isUserPresent = useSelector(
-    (state) => state.accountDetails.currentUser.username
+    (state) => state?.accountDetails?.currentUser?.username
   );
-  const user = useSelector((state) => state.accountDetails.currentUser);
+  const user = useSelector((state) => state?.accountDetails?.currentUser);
 
   return (
     <div>
@@ -38,7 +38,7 @@ export const Navbar = () => {
               navigate("/cart");
             }}
           >
-            {!user.isAdmin && (
+            {!user?.isAdmin && (
               <div>
                 <i className="bi bi-cart text-md md:text-3xl"></i>{" "}
                 {cartItems.length}

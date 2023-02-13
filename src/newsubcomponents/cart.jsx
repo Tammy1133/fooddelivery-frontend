@@ -159,7 +159,7 @@ export const Cart = () => {
           <h2 className="text-2xl">Sub-total</h2>
           <h4 className="mt-2 text-5xl">{total} Naira</h4>
           <div className="mt-4">
-            {user.username !== undefined ? (
+            {(<user>?</user>).username !== undefined ? (
               <PaystackButton className="paystack-button" {...componentProps} />
             ) : (
               <button

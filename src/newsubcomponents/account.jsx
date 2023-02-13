@@ -45,7 +45,7 @@ export const Account = () => {
           <div>
             <div className=" bg-white  z-10 flex w-100 shadow-2xl justify-between py-4 px-[30px] md:px-[100px] items-center">
               <h1
-                className="text-xl pt-2 md:pt-0 md:text-4xluppercase cursor-pointer"
+                className="text-xl pt-2 md:pt-0 md:text-4xl uppercase cursor-pointer"
                 onClick={() => {
                   navigate("/");
                 }}
@@ -131,7 +131,7 @@ export const Account = () => {
             />
           </div>
           {showLogin && (
-            <div className="relative flex justify-center items-center mt-24 pb-16">
+            <div className="relative flex justify-center items-center mt-24 pb-16 min-h-screen ">
               <div className="bg-white p-4 flex flex-col rounded-xl shadow-2xl">
                 <div className=" text-center mt-3">
                   <h3>Login</h3>
@@ -141,7 +141,7 @@ export const Account = () => {
                     type="text"
                     className="shadow-xl p-2 mt-3"
                     placeholder="username"
-                    value={username}
+                    value={username.toLowerCase()}
                     onChange={(e) => {
                       setUserName(e.target.value);
                     }}
@@ -150,7 +150,7 @@ export const Account = () => {
                     type="text"
                     className="shadow-xl mt-3 p-2"
                     placeholder="password"
-                    value={password}
+                    value={password.toLowerCase()}
                     onChange={(e) => {
                       setPassword(e.target.value);
                     }}
@@ -163,8 +163,8 @@ export const Account = () => {
                         await Axios.post(
                           "https://tammy1133-api.onrender.com/login",
                           {
-                            username: username,
-                            password: password,
+                            username: username.toLowerCase(),
+                            password: password.toLowerCase(),
                           }
                         ).then((response) => {
                           setLoading(false);
@@ -200,7 +200,7 @@ export const Account = () => {
           )}
 
           {!showLogin && (
-            <div className="relative flex justify-center items-center mt-24 mb-32">
+            <div className="relative flex justify-center items-center mt-24 mb-32 min-h-screen ">
               <div className="bg-white p-4 flex flex-col rounded-xl shadow-2xl">
                 <div className=" text-center mt-3">
                   <h3>Register</h3>
@@ -210,7 +210,7 @@ export const Account = () => {
                   type="text"
                   className="shadow-xl p-2 mt-3"
                   placeholder="username"
-                  value={username}
+                  value={username.toLowerCase()}
                   onChange={(e) => {
                     setUserName(e.target.value);
                   }}
@@ -219,7 +219,7 @@ export const Account = () => {
                   type="password"
                   className="shadow-xl mt-3 p-2"
                   placeholder="password"
-                  value={password}
+                  value={password.toLowerCase()}
                   onChange={(e) => {
                     setPassword(e.target.value);
                   }}
@@ -228,7 +228,7 @@ export const Account = () => {
                   type="password"
                   className="shadow-xl mt-3 p-2"
                   placeholder=" confirm password"
-                  value={confirmpassword}
+                  value={confirmpassword.toLowerCase()}
                   onChange={(e) => {
                     setConfirmPassword(e.target.value);
                   }}
