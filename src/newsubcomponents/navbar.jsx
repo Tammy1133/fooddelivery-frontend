@@ -25,14 +25,14 @@ export const Navbar = () => {
       </div>
       <div className="fixed bg-white top-0 z-10 flex w-100 shadow-2xl justify-between py-4 px-[30px] md:px-[100px] items-center">
         <h1
-          className="text-4xl uppercase cursor-pointer"
+          className="text-xl pt-2 md:pt-0 md:text-4xl uppercase cursor-pointer"
           onClick={() => {
             navigate("/");
           }}
         >
           FOODIES
         </h1>
-        <div className="d-flex items-center cursor-pointer">
+        <div className="d-flex items-center cursor-pointer text-sm">
           <div
             onClick={() => {
               navigate("/cart");
@@ -40,7 +40,8 @@ export const Navbar = () => {
           >
             {!user.isAdmin && (
               <div>
-                <i className="bi bi-cart text-3xl"></i> {cartItems.length}
+                <i className="bi bi-cart text-md md:text-3xl"></i>{" "}
+                {cartItems.length}
               </div>
             )}
           </div>
@@ -51,9 +52,9 @@ export const Navbar = () => {
                 <Dropdown.Toggle
                   variant="success"
                   id="dropdown-basic"
-                  className="cursor-pointer uppercase"
+                  className="cursor-pointer uppercase text-xs"
                 >
-                  {user.isAdmin ? "Admin" : user.username}
+                  Logged in
                 </Dropdown.Toggle>
 
                 <Dropdown.Menu>
@@ -67,6 +68,7 @@ export const Navbar = () => {
                       Logout
                     </button>
                   </Dropdown.Item>
+
                   <Dropdown.Item>
                     {user.isAdmin && (
                       <button onClick={() => navigate("/admin")}>
@@ -84,6 +86,9 @@ export const Navbar = () => {
                         <h5 className="text-base">Orders</h5>
                       </div>
                     )}
+                  </Dropdown.Item>
+                  <Dropdown.Item className="bg-red-500">
+                    {user.isAdmin ? "Admin" : user.username}
                   </Dropdown.Item>
                 </Dropdown.Menu>
               </Dropdown>

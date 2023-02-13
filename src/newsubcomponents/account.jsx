@@ -3,9 +3,10 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { setCurrentUser } from "../redux/actions/accountActions";
-
 import LoginImage from "../utils/login.jpg";
-import { Navbar } from "./navbar";
+import Dropdown from "react-bootstrap/Dropdown";
+import { logout } from "../redux/actions/accountActions";
+import { Footer } from "./footer";
 
 export const Account = () => {
   const [showLogin, setShowLogin] = useState(true);
@@ -16,9 +17,14 @@ export const Account = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  const cartItems = useSelector((state) => {
+    return state.allCartItems.cartItems;
+  });
+
   const isUserPresent = useSelector(
-    (state) => state.accountDetails.currentUser.username
+    (state) => state?.accountDetails?.currentUser?.username
   );
+  const user = useSelector((state) => state?.accountDetails?.currentUser);
 
   useEffect(() => {
     if (isUserPresent) {
@@ -29,10 +35,94 @@ export const Account = () => {
   return (
     <div>
       {loading ? (
-        <div>loading</div>
+        <div className="h-screen flex justify-center items-center">
+          <div class="spinner-border" role="status">
+            <span class="sr-only">Loading...</span>
+          </div>
+        </div>
       ) : (
-        <div className="relative h-[100vh] overflow-y-hidden">
-          <Navbar></Navbar>
+        <div className="relative  overflow-y-hidden">
+          <div>
+            <div className=" bg-white  z-10 flex w-100 shadow-2xl justify-between py-4 px-[30px] md:px-[100px] items-center">
+              <h1
+                className="text-xl pt-2 md:pt-0 md:text-4xluppercase cursor-pointer"
+                onClick={() => {
+                  navigate("/");
+                }}
+              >
+                FOODIES
+              </h1>
+              <div className="d-flex items-center cursor-pointer">
+                <div
+                  onClick={() => {
+                    navigate("/cart");
+                  }}
+                >
+                  {!user?.isAdmin && (
+                    <div>
+                      <i className="bi bi-cart text-3xl"></i> {cartItems.length}
+                    </div>
+                  )}
+                </div>
+
+                {isUserPresent ? (
+                  <div className="ml-3">
+                    <Dropdown>
+                      <Dropdown.Toggle
+                        variant="success"
+                        id="dropdown-basic"
+                        className="cursor-pointer uppercase"
+                      >
+                        Logged in
+                      </Dropdown.Toggle>
+
+                      <Dropdown.Menu>
+                        <Dropdown.Item>
+                          {user.isAdmin ? "Admin" : user.username}
+                        </Dropdown.Item>
+                        <Dropdown.Item>
+                          <button
+                            onClick={() => {
+                              console.log("clicked");
+                              return dispatch(logout());
+                            }}
+                          >
+                            Logout
+                          </button>
+                        </Dropdown.Item>
+                        <Dropdown.Item>
+                          {user.isAdmin && (
+                            <button onClick={() => navigate("/admin")}>
+                              Admin Panel
+                            </button>
+                          )}
+                        </Dropdown.Item>
+
+                        <Dropdown.Item>
+                          {!user.isAdmin && (
+                            <div
+                              className="flex text-base"
+                              onClick={() => navigate("/orders")}
+                            >
+                              <h5 className="text-base">Orders</h5>
+                            </div>
+                          )}
+                        </Dropdown.Item>
+                      </Dropdown.Menu>
+                    </Dropdown>
+                  </div>
+                ) : (
+                  <h5
+                    className="cursor-pointer ml-4 md:ml-10 rounded-xl mt-2"
+                    onClick={() => navigate("/account")}
+                  >
+                    Login
+                  </h5>
+                )}
+              </div>
+            </div>
+          </div>
+
           <div className="absolute">
             <img
               src={LoginImage}
@@ -41,56 +131,57 @@ export const Account = () => {
             />
           </div>
           {showLogin && (
-            <div className="relative flex justify-center items-center h-[100vh]">
+            <div className="relative flex justify-center items-center mt-24 pb-16">
               <div className="bg-white p-4 flex flex-col rounded-xl shadow-2xl">
                 <div className=" text-center mt-3">
                   <h3>Login</h3>
                 </div>
-                <input
-                  type="text"
-                  className="shadow-xl p-2 mt-3"
-                  placeholder="username"
-                  value={username}
-                  onChange={(e) => {
-                    setUserName(e.target.value);
-                  }}
-                />
-                <input
-                  type="text"
-                  className="shadow-xl mt-3 p-2"
-                  placeholder="password"
-                  value={password}
-                  onChange={(e) => {
-                    setPassword(e.target.value);
-                  }}
-                />
-                <button
-                  className="button-3 mt-4"
-                  onClick={async () => {
-                    setLoading(true);
-                    try {
-                      await Axios.post(
-                        "https://tammy1133-api.onrender.com/login",
-                        {
-                          username: username,
-                          password: password,
-                        }
-                      ).then((response) => {
+                <form action="" className="flex-col flex justify-center">
+                  <input
+                    type="text"
+                    className="shadow-xl p-2 mt-3"
+                    placeholder="username"
+                    value={username}
+                    onChange={(e) => {
+                      setUserName(e.target.value);
+                    }}
+                  />
+                  <input
+                    type="text"
+                    className="shadow-xl mt-3 p-2"
+                    placeholder="password"
+                    value={password}
+                    onChange={(e) => {
+                      setPassword(e.target.value);
+                    }}
+                  />
+                  <button
+                    className="button-3 mt-4"
+                    onClick={async () => {
+                      setLoading(true);
+                      try {
+                        await Axios.post(
+                          "https://tammy1133-api.onrender.com/login",
+                          {
+                            username: username,
+                            password: password,
+                          }
+                        ).then((response) => {
+                          setLoading(false);
+                          console.log(response);
+                          if (response.status === 200) {
+                            dispatch(setCurrentUser(response.data[0]));
+                          }
+                        });
+                      } catch (error) {
+                        console.log(error);
                         setLoading(false);
-                        console.log(response);
-                        if (response.data?.message === "Error") {
-                          alert("Error");
-                        } else {
-                          dispatch(setCurrentUser(response.data[0]));
-                        }
-                      });
-                    } catch (error) {
-                      setLoading(false);
-                    }
-                  }}
-                >
-                  Login
-                </button>
+                      }
+                    }}
+                  >
+                    Login
+                  </button>
+                </form>
                 <div className="my-3">
                   <div className="flex items-center">
                     <p className="mt-2 mr-2">Don't have an account?</p>
@@ -109,12 +200,13 @@ export const Account = () => {
           )}
 
           {!showLogin && (
-            <div className="relative flex justify-center items-center h-[80vh]">
+            <div className="relative flex justify-center items-center mt-24 mb-32">
               <div className="bg-white p-4 flex flex-col rounded-xl shadow-2xl">
                 <div className=" text-center mt-3">
                   <h3>Register</h3>
                 </div>
                 <input
+                  required
                   type="text"
                   className="shadow-xl p-2 mt-3"
                   placeholder="username"
@@ -124,7 +216,7 @@ export const Account = () => {
                   }}
                 />
                 <input
-                  type="text"
+                  type="password"
                   className="shadow-xl mt-3 p-2"
                   placeholder="password"
                   value={password}
@@ -133,7 +225,7 @@ export const Account = () => {
                   }}
                 />
                 <input
-                  type="text"
+                  type="password"
                   className="shadow-xl mt-3 p-2"
                   placeholder=" confirm password"
                   value={confirmpassword}
@@ -145,25 +237,29 @@ export const Account = () => {
                   className="button-3 mt-4"
                   onClick={() => {
                     if (password === confirmpassword) {
-                      const user = {
-                        username,
-                        password,
-                      };
+                      if (password.split("").length > 7) {
+                        const user = {
+                          username,
+                          password,
+                        };
+                        setLoading(true);
 
-                      setLoading(true);
-                      try {
-                        Axios.post(
-                          "https://tammy1133-api.onrender.com/registeruser",
-                          user
-                        ).then((response) => {
-                          setLoading(false);
-                          setShowLogin(true);
-                        });
-                      } catch (error) {
-                        console.log(error);
+                        try {
+                          Axios.post(
+                            "https://tammy1133-api.onrender.com/registeruser",
+                            user
+                          ).then((response) => {
+                            setLoading(false);
+                            setShowLogin(true);
+                          });
+                        } catch (error) {
+                          console.log(error);
+                        }
+                      } else {
+                        alert("Password is to be longer than 7 characters");
                       }
                     } else {
-                      alert("Enter correct Password");
+                      alert("Password and confirm password should be the same");
                     }
                   }}
                 >
@@ -185,6 +281,10 @@ export const Account = () => {
               </div>
             </div>
           )}
+
+          <div className="relative">
+            <Footer></Footer>
+          </div>
         </div>
       )}
     </div>
