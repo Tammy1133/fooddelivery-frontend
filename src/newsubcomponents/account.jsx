@@ -31,6 +31,9 @@ export const Account = () => {
       navigate("/");
     }
   }, [isUserPresent]);
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <div>
@@ -160,10 +163,13 @@ export const Account = () => {
                     onClick={async () => {
                       setLoading(true);
                       try {
-                        await Axios.post("http://localhost:3001/login", {
-                          username: username.toLowerCase(),
-                          password: password.toLowerCase(),
-                        }).then((response) => {
+                        await Axios.post(
+                          "https://tammy1133-api.onrender.com/login",
+                          {
+                            username: username.toLowerCase(),
+                            password: password.toLowerCase(),
+                          }
+                        ).then((response) => {
                           setLoading(false);
                           console.log(response);
                           if (response.status === 200) {
@@ -245,7 +251,7 @@ export const Account = () => {
 
                         try {
                           await Axios.post(
-                            "http://localhost:3001/registeruser",
+                            "https://tammy1133-api.onrender.com/registeruser",
                             user
                           ).then((response) => {
                             console.log(response);

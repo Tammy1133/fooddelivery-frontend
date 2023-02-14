@@ -45,7 +45,7 @@ export const Cart = () => {
 
     if (reference.status === "success") {
       try {
-        await Axios.post("https://localhost:3001//order", {
+        await Axios.post("https://tammy1133-api.onrender.com/order", {
           email: user.username,
           id: reference.reference,
           cartItems: cartItems,
@@ -56,7 +56,7 @@ export const Cart = () => {
           })
           .catch((e) => console.log(e));
 
-        await Axios.get("https://localhost:3001//getorders")
+        await Axios.get("https://tammy1133-api.onrender.com/getorders")
 
           .then((res) => {
             return dispatch(setOrders(res.data));
