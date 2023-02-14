@@ -134,7 +134,7 @@ export const Account = () => {
             />
           </div>
           {showLogin && (
-            <div className="relative flex justify-center items-center mt-24 pb-16 min-h-[85vh] ">
+            <div className="relative flex justify-center items-center mt-24 pb-16 min-h-[75vh] ">
               <div className="bg-white p-4 flex flex-col rounded-xl shadow-2xl">
                 <div className=" text-center mt-3">
                   <h3>Login</h3>
@@ -205,7 +205,7 @@ export const Account = () => {
           )}
 
           {!showLogin && (
-            <div className="relative flex justify-center items-center mt-24 mb-32 min-h-[80vh] ">
+            <div className="relative flex justify-center items-center mt-24 mb-32 min-h-[60vh] ">
               <div className="bg-white p-4 flex flex-col rounded-xl shadow-2xl">
                 <div className=" text-center mt-3">
                   <h3>Register</h3>
