@@ -35,7 +35,10 @@ export const Menu = () => {
     <div id="menu">
       <h4 className="text-center text-6xl p-5">Our Menu</h4>
 
-      <div className="mt-3  flex flex-wrap gap-y-3 ml-[40px] sm:ml-[0px]   sm:justify-center">
+      <div
+        className="mt-3  flex flex-wrap gap-y-3 ml-[40px] sm:ml-[0px]   sm:justify-center "
+        style={{ gridGap: "0.75rem" }}
+      >
         {buttonData.map((item) => {
           return (
             <div
