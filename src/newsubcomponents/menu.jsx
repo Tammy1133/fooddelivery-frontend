@@ -20,11 +20,15 @@ export const Menu = () => {
   const navigate = useNavigate();
 
   const getCategory = (itemName) => {
-    setDisplayedData(
-      allFood.filter((item) => {
-        return item.foodclass.toUpperCase() === itemName.toUpperCase();
-      })
-    );
+    if (itemName.toLowerCase() === "all") {
+      setDisplayedData(allFood);
+    } else {
+      setDisplayedData(
+        allFood.filter((item) => {
+          return item.foodclass.toUpperCase() === itemName.toUpperCase();
+        })
+      );
+    }
   };
 
   useEffect(() => {
@@ -59,6 +63,14 @@ export const Menu = () => {
       </div>
 
       <div className="grid md:grid-cols-2 justify-center md:justify-start  lg:grid-cols-3 mt-3 gap-4 px-2 md:px-5 pt-4  ">
+        {displayedData.length <= 0 && (
+          <div className=" mt-5 w-screen flex justify-center ">
+            <div class="spinner-border text-green-400" role="status">
+              <span class="sr-only">Loading...</span>
+            </div>
+          </div>
+        )}
+
         {displayedData.map((item) => {
           return <EachMenu food={item}></EachMenu>;
         })}
